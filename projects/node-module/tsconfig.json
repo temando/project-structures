@@ -1,0 +1,9 @@
+{
+  "extends": "temando-tsconfig",
+  "compilerOptions": {
+    "declaration": true
+  },
+  "include": [
+    "src/**/*.ts", "typings.d.ts"
+  ]
+}
