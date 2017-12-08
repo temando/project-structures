@@ -1,5 +1,5 @@
 {
-  "extends": "temando-tsconfig",
+  "extends": "./node_modules/temando-tsconfig",
   "compilerOptions": {
     "declaration": true
   },

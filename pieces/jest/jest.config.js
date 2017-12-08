@@ -1,7 +1,7 @@
 module.exports = {
   "verbose": true,
   "transform": { ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js" },
-  "testMatch": ["**/?(*.)(test|spec).ts"],
+  "testMatch": ["**/*.(spec|test).(t|j)s?(x)"],
   "testEnvironment": "node",
   "moduleFileExtensions": [ "ts", "tsx", "js", "json" ],
   "coverageDirectory": ".coverage",

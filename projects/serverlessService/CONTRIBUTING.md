@@ -8,7 +8,6 @@
 	* [Deployment](#deployment)
 		* [Manual deployment](#manual-deployment)
 	* [Tests](#tests)
-		* [Integration tests](#integration-tests)
 		* [Unit tests](#unit-tests)
 	* [Coverage](#coverage)
 
@@ -30,23 +29,11 @@ To deploy the service manually, run the following commands with these shell envi
 ```
 
 ```sh
-  ./scripts/prepare
-  ./scripts/deploy
+  ./scripts/prepare.bash
+  ./scripts/deploy.bash
 ```
 
 ## Tests
-
-### Integration tests
-
-Integration tests should be avaliable from this script:
-
-```sh
-  ./scripts/test
-
-  or
-
-  yarn test:integration
-```
 
 ### Unit tests
 
