@@ -11,6 +11,7 @@ A bunch of project structures we want to standardize on, and distribute via a yo
 	* [`./pieces`](#piecespieces)
 	* [`./projects`](#projectsprojects)
 	* [Purpose](#purpose)
+	* [Contributing](#contributing)
 
 <!-- /code_chunk_output -->
 
@@ -36,3 +37,9 @@ This project should include:
 - Concepts which make projects DRY, such as:
   - An inherited `tsconfig.json`
   - An inherited `webpack.config.ts`
+
+## Contributing
+
+Just make a PR (eg. hit the edit button on a file). It will probably get accepted.
+
+There are lots of pieces missing and various workflows unaccounted for.
