@@ -4,10 +4,9 @@
   "description": "((projectDescription))",
   "private": true,
   "scripts": {
-    "test": "yarn test:unit",
+    "test": "yarn src",
     "lint": "tslint --project tsconfig.json --type-check",
-    "test:unit": "jest src",
-    "test:coverage": "yarn test:unit -- --coverage",
+    "test:coverage": "yarn test --coverage",
     "test:integration": "jest --testMatch **/src/**/*int-test.ts",
     "test:integration:byName": "jest --testMatch \"**/src/**/*${TEST_NAME}*.int-test.ts\"",
     "preversion": "yarn lint && yarn build && yarn test:coverage && changelog-verify CHANGELOG.md",

@@ -1,0 +1,69 @@
+image: registry.temando.io/continuous-integration/node
+
+variables:
+  T_AWS_REGION: $DEPLOYMENT_REGION
+  T_ENV: $ENV
+  T_COMMIT_SHA: $CI_COMMIT_SHA
+
+stages:
+  - build
+  - validate
+  - deploy
+  - deploy-validate
+
+.env: &env
+  before_script:
+    - if [ -z "$ENV" ]; then echo "The ENV variable has not been set!"; exit 1; fi
+    - if [ -z "$AWS_CREDENTIALS" ]; then echo "The AWS_CREDENTIALS variable has not been set!"; exit 1; fi
+    - if [ -z "$DEPLOYMENT_REGION" ]; then echo "The DEPLOYMENT_REGION variable has not been set!"; exit 1; fi
+    - mkdir -p ~/.aws
+    - echo "$AWS_CREDENTIALS" > ~/.aws/credentials
+    - export AWS_PROFILE=$ENV
+
+.deploy: &deploy
+  except: # Do not run on feature branches, only deploy to bleeding edge on master
+    - /^feature*/((projectPath))
+
+build:
+  <<: *env
+  stage: build
+  script:
+    - npm_register ${NPM_INSTALL_TOKEN}
+    - source ./scripts/prepare.bash
+    - yarn registry service pull-env "$T_AWS_REGION" -e "$T_ENV"
+  artifacts:
+    paths:
+      - ts-env.json
+      - node_modules/
+    expire_in: 1 week
+
+lint:
+  stage: validate
+  script:
+    - yarn lint
+
+coverage test:
+  stage: validate
+  allow_failure: true
+  script:
+    - yarn test:coverage
+
+deploy:
+  <<: *env
+  <<: *deploy
+  stage: deploy
+  script:
+    - echo "Deploying to $ENV..."
+    - source ./scripts/deploy.bash
+  artifacts:
+    paths:
+      - serverless.env.yml
+  dependencies:
+    - build
+
+integration:
+  <<: *env
+  <<: *deploy
+  stage: deploy-validate
+  script:
+    - yarn test:integration

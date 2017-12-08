@@ -11,8 +11,8 @@ before_script:
 build:
   stage: build
   script:
-    - source scripts/prepare
-    - source scripts/build
+    - source scripts/prepare.bash
+    - source scripts/build.bash
   artifacts:
     paths:
       - node_modules/
@@ -33,5 +33,5 @@ publish:
   script:
     - yarn release
   only:
-    - tags@service-library/temando-service-library
+    - tags@((servicePath)) # FIXME:
 
