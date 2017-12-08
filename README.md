@@ -10,6 +10,7 @@ A bunch of project structures we want to standardize on, and distribute via a yo
 * [Project Structures](#project-structures)
 	* [`./pieces`](#piecespieces)
 	* [`./projects`](#projectsprojects)
+	* [Purpose](#purpose)
 
 <!-- /code_chunk_output -->
 
@@ -22,3 +23,16 @@ Contains pieces of a project that may or may not be used in a specific project t
 ## [`./projects`](./projects)
 
 Contains project entry points. These are missing the `./pieces/global` and other optional pieces.
+
+## Purpose
+
+This project should include:
+
+- Parts of projects, without repetition.
+  - No example files, should not have to delete anything.
+- A Yeoman generator for:
+  - Interactive project creation
+  - Project uplift via codemods & other merge strategies
+- Concepts which make projects DRY, such as:
+  - An inherited `tsconfig.json`
+  - An inherited `webpack.config.ts`
