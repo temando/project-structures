@@ -1,6 +1,17 @@
 {
-  "extends": "./node_modules/temando-tsconfig",
   "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir":"./build",
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "lib": [
+      "es6",
+      "es7"
+    ],
+    "pretty": true,
     "declaration": true
   },
   "include": [
